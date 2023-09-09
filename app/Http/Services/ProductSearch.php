@@ -184,7 +184,7 @@ trait ProductSearch
 
                 $isInwish       = in_array($item->id, $cookieData['wishLists']) ? 'removeFromWish' : 'addToWish';
                 $isInCart       = !in_array($item->id, $cookieData['productIds']) ? 'openCartModal' : 'alreadyInCart';
-                $cartContent    = !in_array($item->id, $cookieData['productIds']) ? 'Add to Car' : '<span>Add to Cart</span>';
+                $cartContent    = !in_array($item->id, $cookieData['productIds']) ? '+ Cart' : '<span>+ Cart</span>';
                 $userId         = auth()->user()->id ?? null;
                 $thumbnail      = asset($item->product_thumbnail_image);
                 $route          = route('product_detail', $item->id);
@@ -202,8 +202,8 @@ trait ProductSearch
                 $buttonCentent = "";
 
                 if ($item->total_stock_qty > 0) :
-                    $buttonCentent .= "<button type=\"button\" data-productid=\"{$item->id}\" class=\"btn btn-sm btn-secondary btn-card {$isInCart}\"> {$cartContent}</button>
-                        <a href=\"{$route2}\" type=\"button\" class=\"btn btn-sm btn-danger\"> Order Now </a>";
+                    $buttonCentent .= "<button type=\"button\" data-productid=\"{$item->id}\" class=\"btn btn-sm btn-secondary btn-card {$isInCart}\" style=\"width: 80%; margin: auto; background-color: #515a5a !important\"> {$cartContent}</button>
+                        <button data-productid=\"{$item->id}\" type=\"button\" class=\"btn btn-sm btn-danger openCartModal mt-2 mb-2\" style=\"width: 80%; margin: auto; background-color: #cf273d !important;\" > Order Now </button>";
                 else :
                     $buttonCentent .= "<span class=\"text-danger\">Out of Stock</span>";
                 endif;
@@ -212,17 +212,17 @@ trait ProductSearch
                             <div class=\"card __product-card\">
                                 <div class=\"card-wishlist {$isInwish}\" data-auth=\"{$userId}\" data-productid=\"{$item->id}\" style=\"z-index: 100;\" type=\"button\"> <i class=\"fa-solid fa-heart\"></i></div>
                                 <a href=\"{$route}\">
-                                    <img draggable=\"false\" src=\"{$thumbnail}\" class=\"card-img-top\" alt=\"...\">
+                                    <img draggable=\"false\" src=\"{$thumbnail}\" class=\"img-fluid\" alt=\"...\">
                                 </a>
                                 <div class=\"card-body p-0\">
-                                    <div class=\"card-product-title card-title text-center fw-bold\">
+                                    <div class=\"card-product-title card-title text-center fw-bold mt-3\">
                                         <a href=\"{$route}\" class=\"text-decoration-none text-dark\"><h5 data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"{$item->product_name}\">{$product_name}</h5></a>
                                     </div>
 
                                     <div class=\"card-product-price card-text text-center fw-bold\">
                                         <h5>Sale Price {$salesPrice} /= {$discountContent} </h5>
                                     </div>
-                                    <div class=\"card-product-button d-flex justify-content-evenly\">
+                                    <div class=\"card-product-button d-flex flex-column mt-3\">
                                         {$buttonCentent}
                                     </div>
                                 </div>

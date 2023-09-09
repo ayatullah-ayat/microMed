@@ -75,7 +75,9 @@
                                         border-top-left-radius: 20px;
                                         border-bottom-left-radius: 20px;" 
                                 aria-label="Recipient's username" 
-                                aria-describedby="basic-addon2">
+                                aria-describedby="basic-addon2"
+                                name="key"
+                                value="{{ request()->key }}">
                             <div class="input-group-append">
                                 <button style="border: 1px solid #dadadb; margin-right: 5px;" class="btn d-flex justify-content-center" type="submit"><i class="fas fa-search"></i></button>
                             </div>
