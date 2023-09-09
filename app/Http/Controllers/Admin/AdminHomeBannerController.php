@@ -131,6 +131,7 @@ class AdminHomeBannerController extends Controller
             $data           = $request->all();
             $banner_image   = $request->banner_image;
             $fileLocation   = $shop->banner_image;
+            $mobile_banner_image   = $request->mobile_banner_image;
 
             if ($banner_image) {
                 //file, dir
@@ -145,6 +146,16 @@ class AdminHomeBannerController extends Controller
                 $fileLocation = $fileResponse['fileLocation'];
             }
 
+            if($mobile_banner_image){
+                //file, dir
+                $fileResponse = $this->uploadFile($mobile_banner_image, 'BannerImages/');
+                if (!$fileResponse['success'])
+                    throw new Exception($fileResponse['msg'], $fileResponse['code'] ?? 403);
+
+                $mobilefileLocation = $fileResponse['fileLocation'];
+            }
+
+            $data['mobile_banner_image'] = $mobilefileLocation;
             $data['banner_image'] = $fileLocation;
           
             $bannerStatus = $shop->update($data);
