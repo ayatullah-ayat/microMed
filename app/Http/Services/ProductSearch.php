@@ -233,6 +233,14 @@ trait ProductSearch
             endforeach;
 
 
+            if(count($products) <= 0){
+                $html = "<div class=\"col-md-12 col-sm-12 col-12\"><h5 class=\"text-center text-info\">No Products Found!</h5></div>";
+                return [
+                    'html' => $html,
+                    'max_id' => $maxId,
+                    'isLast' => $isLastRecord
+                ];
+            }
             return [
                 'html'   => $html,
                 'max_id' => $maxId,

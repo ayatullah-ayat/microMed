@@ -162,6 +162,8 @@
     let timeId = null;
     $(function() {
         $(document).on("change", '.category_container input[name="category"]', filterBy)
+        $(document).on("change", '.category_container input[name="sub_category"]', filterBy)
+
 
         $(document).on("click", '.color_container .color', selectColor)
         $(document).on("click", '.size_container .size', selectSize)
@@ -398,6 +400,7 @@
 
         let
             category_ids = [],
+            sub_category_ids = [],
             colors = [],
             sizes = [],
             prices = null,
@@ -408,6 +411,7 @@
 
         timeId = setTimeout(() => {
             let categories = $(document).find('input[name="category"]:checked');
+            let sub_categories = $(document).find('input[name="sub_category"]:checked');
             let colorElems = $(document).find('.color_container .color.selected');
             let sizeElems = $(document).find('.size_container .size.selected');
             let tagElems = $(document).find('.filterTagName.selected');
@@ -416,6 +420,10 @@
 
             categories.map((i, cat) => {
                 category_ids.push($(cat).val());
+            })
+
+            sub_categories.map((i, cat) => {
+                sub_category_ids.push($(cat).val());
             })
 
             colorElems.map((i, color) => {
@@ -437,6 +445,7 @@
 
             filterObj = {
                 category_ids: category_ids,
+                sub_category_ids: sub_category_ids,
                 colors: colors,
                 sizes: sizes,
                 prices: prices,

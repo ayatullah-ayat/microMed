@@ -43,7 +43,7 @@ class ShopController extends Controller
                     ->get();
         
         if (request()->ajax()){
-
+            
             $response = $this->renderProduct($products);
 
             return response()->json([
@@ -93,15 +93,16 @@ class ShopController extends Controller
     }
     public function ajaxFilter()
     {
-        $limit          = $this->limit;
-        $maxId          = request()->max_id;  //min record
-        $operator       = request()->operator ?? '<';
+        $limit                  = $this->limit;
+        $maxId                  = request()->max_id;  //min record
+        $operator               = request()->operator ?? '<';
 
-        $category_ids   = request()->category_ids ?? null;
-        $tags           = request()->tags ?? null;
-        $colors         = request()->colors ?? null;
-        $sizes          = request()->sizes ?? null;
-        $prices         = request()->prices ?? null;
+        $category_ids           = request()->category_ids ?? null;
+        $sub_category_ids       = request()->sub_category_ids ?? null;
+        $tags                   = request()->tags ?? null;
+        $colors                 = request()->colors ?? null;
+        $sizes                  = request()->sizes ?? null;
+        $prices                 = request()->prices ?? null;
 
         $q = Product::selectRaw('products.*, 
                 product_variant_prices.color_name as v_color_name, 
@@ -113,6 +114,10 @@ class ShopController extends Controller
 
         if($category_ids){
             $q->whereIn('products.category_id', $category_ids);
+        }
+
+        if($sub_category_ids){
+            $q->whereIn('products.subcategory_id', $sub_category_ids);
         }
 
         if($prices){
