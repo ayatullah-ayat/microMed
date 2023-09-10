@@ -218,7 +218,7 @@ class OtherOrderController extends Controller
             $data = $request->all();
 
             $data['updated_by'] = auth()->guard('admin')->user()->id ?? null;
-
+            $order_ids = [];
             foreach ($data['products'] as $product) {
                 $otherorder = [
                     'order_date'            => $data['order_date'],
@@ -239,6 +239,9 @@ class OtherOrderController extends Controller
                     'total_order_price'     => $product['total_order_price'],
                 ];
                 
+                $order_ids[] = $product['order_id'];
+                $finalOrderNo = $data['order_no'];
+
                 if($product['order_id'] && !empty($product['order_id'])){
                     $orderstatus        = OtherOrder::find($product['order_id'])->update($otherorder);
                 }else {
@@ -246,6 +249,7 @@ class OtherOrderController extends Controller
                 }
             }
 
+            $this->removeOrderItem($order_ids, $finalOrderNo);
             if(!$orderstatus)
                 throw new Exception("Unable to Update Order!", 403);
 
@@ -263,6 +267,14 @@ class OtherOrderController extends Controller
         }
     }
 
+    public function removeOrderItem($order_ids, $orderNo)
+    {
+        $ordersToDelete = OtherOrder::where('order_no', $orderNo)->whereNotIn('id', $order_ids)->get();
+
+        foreach ($ordersToDelete as $order) {
+            $order->delete();
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *

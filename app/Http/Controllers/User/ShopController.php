@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Services\ProductSearch;
+use App\Models\HomeBanner;
 use App\Models\ProductColor;
+use App\Models\Shop;
 
 class ShopController extends Controller
 {
@@ -76,8 +78,10 @@ class ShopController extends Controller
                     ->where('is_publish', 1)
                     ->first();
         $countProducts = Product::where('is_active', 1)->where('is_publish', 1)->count();
-        
-        return view('frontend.pages.shop', compact('products', 'countProducts', 'limit' ,'tags', 'categories' , 'productColors' , 'productSize', 'maxSalesPrice'));
+
+        $shopBanner = Shop::first();
+
+        return view('frontend.pages.shop', compact('products', 'shopBanner', 'countProducts', 'limit' ,'tags', 'categories' , 'productColors' , 'productSize', 'maxSalesPrice'));
     }
 
 

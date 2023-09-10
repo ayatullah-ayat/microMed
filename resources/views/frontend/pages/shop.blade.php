@@ -5,6 +5,18 @@
 <div class="container bg-dark text-white pt-2 pb-2 shopFilter position-sticky">
     <button class="btn btn-danger" id="shopFilterBtn">Filter</button>
 </div>
+<section>
+    <picture>
+        @if(isset($shopBanner->mobile_banner_image))
+            <source media="(max-width:700px)" srcset="{{ $shopBanner->mobile_banner_image }}">
+        @endif
+        {{-- <img src="/assets/frontend/img/banner-desktop.png" alt="Flowers" style="width:100%;"> --}}
+        @if(isset($shopBanner->banner_image))
+            <img src="{{ asset($shopBanner->banner_image) }}" alt="Banner Image" style="width: 100%; height: 200px;">
+        @endif
+    </picture>
+</section>
+
 <section class="container-fluid product-shop-area my-5">
     <div class="container">
         <div class="row">
