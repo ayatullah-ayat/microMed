@@ -11,7 +11,7 @@
     </div> --}}
 
     <div class="heading-title text-center text-danger">
-            <h2 class="fw-bold"> Gallery </h2>
+            <h2 class="fw-bold"> SOME PICTURES  OF CUSTOMIZED PRODUCTS </h2>
         </div>
  
     <div class="container">
