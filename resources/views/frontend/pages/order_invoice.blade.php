@@ -146,7 +146,7 @@
     <htmlpageheader name="myheader">
         <div class="row">
             <div class="col-6">
-                <img width="250px" height="45px" src="https://micromediabd.com/public/assets/frontend/img/invoice_mic_logo-01.png" alt="Micromedia_Logo">
+                <img width="250px" height="45px" src="https://micromediabd.com/public/assets/frontend/img/logo-mic.png" alt="Micromedia_Logo">
             </div>
             <div class="col-6">
                 <div class="row">

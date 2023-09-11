@@ -461,6 +461,7 @@
                     $('#due_price').val(ordersData[0]?.due_price)
                     $('#mobile').val(ordersData[0]?.moible_no)
                     $('#institute_description').val(ordersData[0]?.institute_description)
+                    $('#customer_name').val(ordersData[0]?.customer_name)
                     $('#address').val(ordersData[0]?.address)
                     $('#note').val(ordersData[0]?.note)
                     $('#service_charge').val(ordersData[0]?.service_charge)
