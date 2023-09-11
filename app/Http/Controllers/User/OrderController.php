@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Cookie;
 use App\Http\Requests\CustomOrderRequest;
 use App\Models\Custom\CustomServiceOrder;
+use App\Models\ShippingCharge;
 use Devfaysal\BangladeshGeocode\Models\Division;
 use Faker\Factory as Faker;
 use Twilio\Rest\Client;
@@ -36,7 +37,7 @@ class OrderController extends Controller
     public function index(Product $product)
     {
 
-        $cities = Division::all();
+        $cities = ShippingCharge::all();
 
         $cartProducts = null;
         $productIds = Cookie::get('productIds');

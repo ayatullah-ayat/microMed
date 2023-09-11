@@ -259,24 +259,34 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control" id="basic-addon1">+88</span>
                         </div>
-                            <input type="text" class="form-control border" placeholder="Write Your Phone No" required name="mobile_no" value="@auth{{auth()->guard('web')->user()->profile ? auth()->guard('web')->user()->profile->mobile_no : ''}}@endauth">
+                            <input 
+                                type="text" 
+                                class="form-control border" 
+                                placeholder="Write Your Phone No" required name="mobile_no" value="@auth{{auth()->guard('web')->user()->profile ? auth()->guard('web')->user()->profile->mobile_no : ''}}@endauth">
                             <span class="v-msg text-danger"></span>
                         </div>
                     </div>
 
                     <div class="col-md-6 px-2 mb-3">
                         <div class="form-group">
-                            <input type="email" class="form-control border" placeholder="Write Your Email" name="email" value="@auth{{auth()->guard('web')->user()->email ?? ''}}@endauth">
+                            <input type="email" 
+                                class="form-control border" 
+                                placeholder="Write Your Email" 
+                                name="email" 
+                                value="@auth{{auth()->guard('web')->user()->email ?? ''}}@endauth"
+                                required>
                             <span class="v-msg text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6 px-2 mb-3">
                         <div class="form-group">
-                            <select class="border" name="city" id="city" style="width: 100%; height: 28px;">
+                            <select class="border" name="city" id="city" style="width: 100%; height: 36px;" required>
                                 <option value="0" disabled selected>Select City</option>
-                                @foreach($cities as $city)
-                                <option value="{{ $city->name }}">{{ $city->name }}</option>
-                                @endforeach
+                                @forelse ($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->shipping_location }}</option>
+                                @empty
+                                    <option value="">No Shipping Location Found</option>
+                                @endforelse
                             </select>
                         </div>
                     </div>

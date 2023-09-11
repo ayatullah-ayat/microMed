@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHomeBannerTable extends Migration
+class CreateShippingChargeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateHomeBannerTable extends Migration
      */
     public function up()
     {
-        Schema::create('home_banner', function (Blueprint $table) {
+        Schema::create('shipping_charge', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('banner_image');
-            $table->boolean('is_active')->default(1);
+            $table->string('shipping_location')->unique();
+            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateHomeBannerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('home_banner');
+        Schema::dropIfExists('shipping_charge');
     }
 }

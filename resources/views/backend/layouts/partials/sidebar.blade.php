@@ -323,6 +323,7 @@
                 {{-- <a class="collapse-item" href="#">Web Logo</a> --}}
                 {{-- <a class="collapse-item" href="#">Web Header</a> --}}
                 <a class="collapse-item" href="{{ route('admin.homepagebanner.index') }}">Home Banner</a>
+                <a class="collapse-item" href="{{ route('admin.shipping-charge.index') }}">Shipping Charge</a>
                 <a class="collapse-item" href="{{ route('admin.footer-about.index') }}">Footer About</a>
                 <a class="collapse-item" href="{{ route('admin.socialicon.index') }}">Manage Social Links</a>
                 <a class="collapse-item" href="{{ route('admin.contact.index') }}">Contact Form List</a>

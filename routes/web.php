@@ -66,6 +66,7 @@ use App\Http\Controllers\User\ContactController as CustomerContactController;
 use App\Http\Controllers\User\GalleryController as CustomerGalleryController;
 use App\Http\Controllers\User\CustomOrderController as UserCustomOrderController;
 use App\Http\Controllers\Admin\ApplyCouponController as AdminApplyCouponController;
+use App\Http\Controllers\Admin\ShippingChargeController;
 
 // ------------ Frontend namespace ----------------------
 
@@ -487,6 +488,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=>['auth:admin'
         Route::post('/',                    [WebFooterController::class, 'store'])->name('store');
         Route::put('/{webfooter}',          [WebFooterController::class, 'update'])->name('update');
         Route::delete('/{webfooter}',       [WebFooterController::class, 'destroy'])->name('destroy');
+    });
+    
+    Route::group(['prefix' => 'shipping-charge', 'as' => 'shipping-charge.'], function(){
+        Route::get('/',                     [ShippingChargeController::class, 'index'])->name('index');
+        Route::post('/',                    [ShippingChargeController::class, 'store'])->name('store');
+        Route::put('/{shippingcharge}',          [ShippingChargeController::class, 'update'])->name('update');
+        Route::delete('/{shippingcharge}',       [ShippingChargeController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'manage-company', 'as' => 'manage_company.'], function(){
