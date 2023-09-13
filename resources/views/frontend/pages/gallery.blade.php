@@ -10,7 +10,7 @@
         <h2> Gallery  </h2>
     </div> --}}
 
-    <div class="heading-title text-center text-danger">
+    <div class="text-center text-danger">
             <h2 class="fw-bold"> SOME PICTURES  OF CUSTOMIZED PRODUCTS </h2>
         </div>
  
