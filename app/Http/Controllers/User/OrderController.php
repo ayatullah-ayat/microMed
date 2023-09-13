@@ -50,7 +50,9 @@ class OrderController extends Controller
 
         $coupon = Coupon::where('status', 1)->get();
         // dd($coupon);
-        return view('frontend.pages.checkout', compact('product', 'cartProducts', 'coupon', 'cities'));
+
+        $shipingCharges = ShippingCharge::get();
+        return view('frontend.pages.checkout', compact('product', 'cartProducts', 'coupon', 'cities', 'shipingCharges'));
         //checkout
     }
 

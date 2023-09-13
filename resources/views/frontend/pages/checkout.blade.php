@@ -96,6 +96,22 @@
                     </div>
                 </form>
                 <p class="alert my-2 py-1" id="coupon_msg"></p>
+
+                @if (count($shipingCharges) > 0)
+                    <div>
+                        <h6 class="text-muted">Shipping Charges:</h6>
+                        <ul class="list-group">
+                            @foreach ($shipingCharges as $item)
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div>{{ $item->shipping_location }}</div>
+                                    </div>
+                                    <span>{{ $item->amount }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
 
             <div class="col-md-8 order-md-1">
@@ -283,7 +299,7 @@
                             <select class="border" name="city" id="city" style="width: 100%; height: 36px;" required>
                                 <option value="0" disabled selected>Select City</option>
                                 @forelse ($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->shipping_location }}</option>
+                                    <option value="{{ $city->shipping_location }}">{{ $city->shipping_location }}</option>
                                 @empty
                                     <option value="">No Shipping Location Found</option>
                                 @endforelse
