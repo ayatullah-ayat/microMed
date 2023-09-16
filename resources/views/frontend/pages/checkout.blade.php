@@ -261,15 +261,15 @@
 
                     <div class="col-md-6 px-2 mb-3">
                         <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text form-control" id="basic-addon1">+88</span>
-                        </div>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text form-control" id="basic-addon1">+88</span>
+                            </div>
                             <input 
                                 type="text" 
                                 class="form-control border" 
                                 placeholder="Write Your Phone No" required name="mobile_no" value="@auth{{auth()->guard('web')->user()->profile ? auth()->guard('web')->user()->profile->mobile_no : ''}}@endauth">
-                            <span class="v-msg text-danger"></span>
                         </div>
+                        <span class="v-msg text-danger"></span>
                     </div>
 
                     <div class="col-md-6 px-2 mb-3">
@@ -286,13 +286,14 @@
                     <div class="col-md-6 px-2 mb-3">
                         <div class="form-group">
                             <select class="border" name="city" id="city" onchange="shippingLocationChangeHandler()" style="width: 100%; height: 36px;" required>
-                                <option value="0" disabled selected>Select Shipping</option>
+                                <option disabled selected>Select Shipping</option>
                                 @forelse ($cities as $city)
                                     <option value="{{ $city->amount }}">{{ $city->shipping_location }} ({{ $city->amount }}Tk)</option>
                                 @empty
                                     <option value="">No Shipping Location Found</option>
                                 @endforelse
                             </select>
+                            <span class="v-msg text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-12 px-2 mb-3">
@@ -518,12 +519,11 @@
         parentWrapper = $('#shipment-form');
 
         [...parentWrapper.find('[required]')].forEach(elem => {
-            const value = $(elem).val().trim();
-
+            const value = $(elem).val();
             $(elem).parent().find('.v-msg').text(``);
-
+            
             if (!value) {
-                $(elem).parent().find('.v-msg').text(`${capitalize($(elem).attr('name')) ?? 'This Field '} is Required!`);
+                $(elem).parent().parent().find('.v-msg').text(`${capitalize($(elem).attr('name')) ?? 'This Field '} is Required!`);
                 isValid = false;
             }
 

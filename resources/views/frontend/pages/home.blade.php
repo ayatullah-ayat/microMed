@@ -59,12 +59,11 @@
             @endphp
 
             @isset($customservicecategories)
-            @foreach ($customservicecategories as $customservicecategory)
+            @foreach ($customservicecategories as $key => $customservicecategory)
             @php
             $maxCatId = $customservicecategory->id;
             @endphp
-
-            <div class="col-md-4 col-sm-6 col-6 mb-1 product-area-column">
+            <div class="col-md-4 col-sm-6 col-6 mb-1 product-area-column @if($key == (count($customservicecategories) -1))odd-product @endif">
                 <div class="product-content d-flex">
 
                     <div class='reveal'>
