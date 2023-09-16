@@ -172,6 +172,7 @@
                         prices = '',
                         order_qty = '',
                         total_order_price = 0,
+                        dueAmount = 0,
                         itemLength = order.categories.length,
                         index = 0;
 
@@ -199,12 +200,13 @@
                         })
                     }
 
+                    dueAmount           += (total_order_price + order.service_charge) - order.advance_balance;
                     totalQty            += sub_total_order_qty ?? 0,
                     totalPrice          += sub_total_order_price ?? 0,
                     totalDiscount       += order.order_discount_price ?? 0,
                     totalServiceCharge  += order.service_charge ?? 0,
                     totalAdvanced       += order.advance_balance ?? 0,
-                    totalDue            += order.due_price ?? 0,
+                    totalDue            += dueAmount ?? 0,
     
                     html += `<tr>
                         <td>${++count}</td>
@@ -217,7 +219,7 @@
                         <td>${order.order_discount_price ?? '0.0' }</td>
                         <td>${order.service_charge ?? '0.0' }</td>
                         <td>${order.advance_balance ?? '0.0' }</td>
-                        <td>${order.due_price ?? '0.0' }</td>
+                        <td>${dueAmount ?? '0.0' }</td>
                         <td>${order.moible_no ?? 'N/A' }</td>
                         <td>${order.institute_description ?? 'N/A' }</td>
                         <td>${order.address ?? 'N/A' }</td>

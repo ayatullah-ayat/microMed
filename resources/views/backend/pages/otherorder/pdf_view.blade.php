@@ -1,5 +1,6 @@
 <html>
 
+
 <head>
     <style>
         body {
@@ -117,14 +118,14 @@
             @endphp
 
                 @foreach ($orders as $item)
-
+                
                 @php
-                    $all_total_qty          += $item->order_qty;
-                    $all_total_price        += $item->total_order_price;
+                    // $all_total_qty          += $item->order_qty;
+                    // $all_total_price        += $item->total_order_price;
                     $total_service_price    += $item->service_charge;
                     $total_discount         += $item->order_discount_price;
                     $total_payments         += $item->advance_balance;
-                    $total_due              += $item->due_price;
+                    // $total_due              += $item->due_price;
 
 
 
@@ -144,7 +145,8 @@
                     foreach ($item->categories as $it) {
                         $total_order_price += $it->total_order_price;
                         $qty += $it->order_qty;
-                        $total_prices += $it->price;
+                        $all_total_qty += $it->order_qty;
+                        $total_prices += $it->total_order_price;
                         if (++$index === $itemLength) {
                             $category_names .= "$it->category_name";
                             $prices .= "$it->price";
@@ -152,7 +154,10 @@
                             $category_names .= "$it->category_name, ";
                             $prices .= "$it->price, ";
                         }
-                    }  
+                    }
+                    $all_total_price += $total_order_price;
+                    $due_amount = ($total_order_price + $item->service_charge) - $item->advance_balance;
+                    $total_due += $due_amount;
                 @endphp
                     <tr style="border-bottom: 1px solid #000;">
                         <td align="center">{{  $loop->iteration }}</td>
@@ -165,7 +170,7 @@
                         <td align="right">{{ $item->order_discount_price ?? '0.0' }}</td>
                         <td align="right">{{ $item->service_charge ?? '0.0' }}</td>
                         <td align="right">{{ $item->advance_balance ?? '0.0' }}</td>
-                        <td align="right">{{ $item->due_price ?? '0.0' }}</td>
+                        <td align="right">{{ $due_amount ?? '0.0' }}</td>
                         <td>{{ $item->moible_no ?? 'N/A' }}</td>
                         <td>{{ $item->institute_description ?? 'N/A' }}</td>
                         <td>{{ $item->address ?? 'N/A' }}</td>
