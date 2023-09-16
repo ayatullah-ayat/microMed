@@ -191,8 +191,8 @@
                                             <thead class="bg-danger text-white">
                                                 <tr>
                                                     <th width="650">Category</th>
-                                                    <th width="550" class="text-center">Qty</th>
                                                     <th width="550" class="text-center">Price</th>
+                                                    <th width="550" class="text-center">Qty</th>
                                                     <th width="50" class="text-center">
                                                         <button class="btn btn-sm btn-info add_row"><i class="fa fa-plus"></i> Add</button>
                                                     </th>
@@ -207,13 +207,13 @@
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
-                                                            <input type="number" name="qty" id="qty" class="form-control calprice" placeholder="Quantity" />
+                                                            <input type="number" name="price" id="price" class="form-control calprice" placeholder="Price" />
                                                         </div>
                                                         <span class="v-msg"></span>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
-                                                            <input type="number" name="price" id="price" class="form-control calprice" placeholder="Price" />
+                                                            <input type="number" name="qty" id="qty" class="form-control calprice" placeholder="Quantity" />
                                                         </div>
                                                         <span class="v-msg"></span>
                                                     </td>
@@ -492,13 +492,13 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="number" name="qty" value="${orderData?.order_qty}" id="qty" class="form-control calprice" placeholder="Quantity" />
+                                <input type="number" name="price" value="${orderData?.price}" id="price" class="form-control calprice" placeholder="Price" />
                             </div>
                             <span class="v-msg"></span>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="number" name="price" value="${orderData?.price}" id="price" class="form-control calprice" placeholder="Price" />
+                                <input type="number" name="qty" value="${orderData?.order_qty}" id="qty" class="form-control calprice" placeholder="Quantity" />
                             </div>
                             <span class="v-msg"></span>
                         </td>
