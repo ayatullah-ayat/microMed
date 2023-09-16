@@ -82,6 +82,11 @@
                         <span class="text-success" id="discount">{{ $couponPrice }}</span>
                     </li>
 
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <span class="text-info"> Shipping Charge (Tk):</span>
+                        <span class="text-success" id="shippingCharge">0</span>
+                    </li>
+
                     <li class="list-group-item d-flex justify-content-between">
                         <span> Grand Total (Tk):</span>
                         <strong id="surbomot"> {{ $grandtotalPrice - $couponPrice }} </strong>
@@ -96,22 +101,6 @@
                     </div>
                 </form>
                 <p class="alert my-2 py-1" id="coupon_msg"></p>
-
-                @if (count($shipingCharges) > 0)
-                    <div>
-                        <h6 class="text-muted">Shipping Charges:</h6>
-                        <ul class="list-group">
-                            @foreach ($shipingCharges as $item)
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div>{{ $item->shipping_location }}</div>
-                                    </div>
-                                    <span>{{ $item->amount }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
             </div>
 
             <div class="col-md-8 order-md-1">
@@ -296,10 +285,10 @@
                     </div>
                     <div class="col-md-6 px-2 mb-3">
                         <div class="form-group">
-                            <select class="border" name="city" id="city" style="width: 100%; height: 36px;" required>
-                                <option value="0" disabled selected>Select City</option>
+                            <select class="border" name="city" id="city" onchange="shippingLocationChangeHandler()" style="width: 100%; height: 36px;" required>
+                                <option value="0" disabled selected>Select Shipping</option>
                                 @forelse ($cities as $city)
-                                    <option value="{{ $city->shipping_location }}">{{ $city->shipping_location }}</option>
+                                    <option value="{{ $city->amount }}">{{ $city->shipping_location }} ({{ $city->amount }}Tk)</option>
                                 @empty
                                     <option value="">No Shipping Location Found</option>
                                 @endforelse
@@ -386,6 +375,16 @@
         $(document).on("click", '.remove-coupon', removeCoupon)
     });
 
+    function shippingLocationChangeHandler()
+    {
+        let shippingCharge = $("#city").val()
+        let surbomot = $("#surbomot").text();
+
+        let grandTotal = Number(shippingCharge) + Number(surbomot);
+        $("#shippingCharge").text(shippingCharge)
+        $("#surbomot").text(grandTotal)
+        console.log('shippingCharge_val', shippingCharge, surbomot);
+    }
     function incrementDecrementCount2(e) {
         let
             elem = $(this),

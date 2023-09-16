@@ -236,6 +236,12 @@ class OrderController extends Controller
             //
 
             $req = $request->all();
+
+            $shippingCharge = ShippingCharge::where('amount', $req['shipment']['city'])->first();
+
+            if (!$shippingCharge) {
+                throw new Exception('Shipping Charge Must Have To Select');
+            }
             if (!array_key_exists('order', $req))
                 throw new Exception("Invalid Request!", 403);
 
@@ -376,10 +382,10 @@ class OrderController extends Controller
                 'order_sizes'       => count($sizes) ? implode(',', $sizes) : null,
                 'order_colors'      => count($colors) ? implode(',', $colors) : null,
                 'shipping_address'  => $req['shipment']['address'] ?? null,
-                'city'              => $req['shipment']['city'] ?? null,
+                'city'              => $shippingCharge->shipping_location,
+                'shipment_cost'     => $shippingCharge->amount,
                 'payment_type'      => $req['shipment']['payment_type'] ?? null,
                 'payment_total_price' => 0,
-                'shipment_cost'     => 0,
                 'service_charge'    => 0,
                 'discount_price'    => $data['total_discount_price'],
                 'order_total_qty'   => $totalQty,

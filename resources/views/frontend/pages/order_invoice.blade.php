@@ -279,10 +279,10 @@
     </div>
     <div class="overall-calculation text-right" style="line-height: 28px;">
         <div class="text-bold" style="font-size: 14px;">Sub Total: BDT {{ $subSubtotal }}</div>
-        <div style="font-size: small;">Shipping Fee: BDT {{ 0 }}</div>
+        <div style="font-size: small;">Shipping Fee: BDT {{ $order->shipment_cost }}</div>
         <div style="font-size: small;">Discount: BDT {{ $totalDiscount }}</div>
         <div style="line-height: 28px;margin-top: 8px;margin-bottom: 6px;">
-            <div class="text-bold" style="font-size: 14px; line-height: 18px;">Total: BDT {{ $subSubtotal - $totalDiscount }}</div>
+            <div class="text-bold" style="font-size: 14px; line-height: 18px;">Total: BDT {{ ($subSubtotal - $totalDiscount) + $order->shipment_cost }}</div>
             <div style="font-size: small;line-height: 18px;">(Including VAT)</div>
         </div>
         <div style="font-size: small;">In Words: {{ numToWords((float) $subSubtotal) }} Tk Only</div>
