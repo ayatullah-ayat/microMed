@@ -58,7 +58,8 @@ class OrderController extends Controller
 
     public function orderSuccess($order_no = null)
     {
-        return view('frontend.pages.order_success', compact('order_no'));
+        $order = Order::where('order_no', $order_no)->first();
+        return view('frontend.pages.order_success', compact('order_no', 'order'));
     }
 
     public function invoiceDownload($order_no)
