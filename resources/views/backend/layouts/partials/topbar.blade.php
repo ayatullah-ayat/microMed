@@ -226,3 +226,27 @@
     </ul>
 
 </nav>
+
+@push('js')
+    <script>
+
+        $(document).ready(function(){
+            let toggleSwitch = true;
+            $(document).on('click' , '#sidebarToggleTop', toggleSidebar)
+
+            function toggleSidebar()
+            {
+                if (toggleSwitch) {
+                    $("#accordionSidebar").css("width", "0")
+                    $("#accordionSidebar").css("overflow", "hidden")
+                    toggleSwitch = false;
+                }else{
+                    $("#accordionSidebar").css("width", "")
+                    $("#accordionSidebar").css("overflow", "")
+                    toggleSwitch = true;
+                }
+            }
+        })
+
+    </script>
+@endpush
