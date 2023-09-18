@@ -250,8 +250,8 @@
                     <td style="text-align: right;padding-right: 5px;">{{ $data->order_total_price ?? '0' }}</td>
                 </tr>
                 <tr>
-                    <th colspan="2" style="text-align: right;">Shipping:</th>
-                    <td style="text-align: right;padding-right: 5px;">{{ '0' }}</td>
+                    <th colspan="2" style="text-align: right;">Shipping Charge:</th>
+                    <td style="text-align: right;padding-right: 5px;">{{ $data->shipment_cost }}</td>
                 </tr>
                 <tr>
                     <th colspan="2" style="text-align: right;">Tax:</th>
