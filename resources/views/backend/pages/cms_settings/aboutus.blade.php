@@ -130,6 +130,7 @@
     <!-- Custom styles for this page -->
     <link href="{{ asset('assets/backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/currency/currency.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/backend/libs/summernote/summernote.css')}}" rel="stylesheet">
 @endpush
 
 @push('js')
@@ -138,6 +139,7 @@
     <script src="{{ asset('assets/backend/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <!-- Page level custom scripts -->
     <script src="{{ asset('assets/backend/libs/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('assets/backend/libs/summernote/summernote.js') }}"></script>
     <script>
         $(document).ready(function(){
             init();
@@ -207,7 +209,7 @@
 
             globeInit(arr);
         }
-
+        $("#about_description").summernote();
         function resetForm(){
             resetData();
         }
@@ -250,7 +252,9 @@
 
                 $('#about_title').val(about?.about_title)
                 $('#about_description').val(about?.about_description)
-                
+                const content = about?.about_description;
+
+                $('#about_description').summernote('code', content);
                 if(about?.is_active){
                     $('#isActive').prop('checked',true)
                 }else{

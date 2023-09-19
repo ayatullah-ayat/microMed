@@ -79,7 +79,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="footer_about">Footer About</label>
-                                    <textarea name="footer_about" id="footer_about" class="form-control" placeholder="Footer About"></textarea>
+                                    <textarea name="footer_about" id="footer_about" cols="" rows="5" class="form-control" placeholder="Footer About"></textarea>
                                 </div>
                             </div>
 
@@ -118,10 +118,12 @@
     
 @endsection
 
+
 @push('css')
     <!-- Custom styles for this page -->
     <link href="{{ asset('assets/backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/currency/currency.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/backend/libs/summernote/summernote.css')}}" rel="stylesheet">
 @endpush
 
 @push('js')
@@ -130,6 +132,8 @@
     <script src="{{ asset('assets/backend/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <!-- Page level custom scripts -->
     <script src="{{ asset('assets/backend/libs/demo/datatables-demo.js') }}"></script>
+
+    <script src="{{ asset('assets/backend/libs/summernote/summernote.js') }}"></script>
     <script>
         $(document).ready(function(){
             init();
@@ -144,8 +148,10 @@
             $(document).on('click' , '#webfooter_update_btn', updateToDatabase)
 
             $(document).on('change' , '#footer_logo', checkImage)
-        });
 
+            
+        });
+        
            // call the func on change file input 
            function checkImage() {
             fileRead(this, '#img-preview');
@@ -227,7 +233,7 @@
         }
 
         function init(){
-
+            $('#footer_about').summernote();
             let arr=[
                 {
                     dropdownParent  : '#categoryModal',
@@ -259,7 +265,7 @@
             //     format : 'yyyy-mm-dd',
             // })
         }
-
+        
         function createModal(){
             showModal('#WebFooterModal');
             $('#webfooter_save_btn').removeClass('d-none');
@@ -297,6 +303,10 @@
                 $('#WebFooterModal .heading').text('Edit').attr('data-id', webfooter?.id)
 
                 $('#footer_about').val(webfooter?.footer_about)
+
+                const content = webfooter?.footer_about;
+
+                $('#footer_about').summernote('code', content);
                 
                 if(webfooter?.is_active){
                     $('#isActive').prop('checked',true)
