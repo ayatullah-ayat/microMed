@@ -457,21 +457,34 @@
 
     function addToCart(e) {
 
+        let countColorElem = $(document).find('.single-prodect-color .color').length
+        let countSizeElem = $(document).find('.single-prodect-size .size').length
+
+        console.log('addToCart_color_size', countColorElem, countSizeElem);
+        
         let selectedColorElem = $(document).find('.single-prodect-color .color.selected');
         let selectedSizeElem = $(document).find('.single-prodect-size .size.selected');
 
-        if(selectedSizeElem.length === 0 && selectedColorElem.length === 0)
-        {
-            $('#selectColor').removeClass('d-none');
-            $('#selectSizeMessage').removeClass('d-none');
-            return;
-        }
-        else if (selectedColorElem.length === 0) {
-            $('#selectColor').removeClass('d-none');
-            return;
-        } else if (selectedSizeElem.length === 0) {
-            $('#selectSizeMessage').removeClass('d-none');
-            return;
+        if(countColorElem > 0 && countSizeElem > 0){
+            console.log('color & size');
+            if(selectedSizeElem.length === 0 && selectedColorElem.length === 0)
+            {
+                $('#selectColor').removeClass('d-none');
+                $('#selectSizeMessage').removeClass('d-none');
+                return;
+            }
+        }else if(countColorElem > 0 && countSizeElem <= 0){
+            console.log('color');
+            if (selectedColorElem.length === 0) {
+                $('#selectColor').removeClass('d-none');
+                return;
+            }
+        }else if(countColorElem <= 0 && countSizeElem > 0){
+            console.log('size');
+            if (selectedSizeElem.length === 0) {
+                $('#selectSizeMessage').removeClass('d-none');
+                return;
+            }
         }
 
         let elem = $(this);
