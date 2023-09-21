@@ -112,6 +112,7 @@
                     </div>
 
                     <div class="single-prodect-size">
+                        @if(isset($product->productSizes) && count($product->productSizes) > 0)
                         <h3> Size </h3>
                         <div class="row" style="margin-left: -0.5rem!important;">
                             @isset( $product->productSizes )
@@ -124,7 +125,7 @@
                             @endisset
 
                         </div>
-
+                        @endif
                     </div>
 
                     <div class="actions">
