@@ -750,18 +750,21 @@
                                 <input type="text" name="category_name" id="category_name" class="form-control" placeholder="Category Name" />
                             </div>
                         </td>
-                        <td>
-                            <div class="form-group">
-                                <input type="number" name="qty" id="qty" class="form-control calprice" placeholder="Quantity" />
-                            </div>
-                            <span class="v-msg"></span>
-                        </td>
+
                         <td>
                             <div class="form-group">
                                 <input type="number" name="price" id="price" class="form-control calprice" placeholder="Price" />
                             </div>
                             <span class="v-msg"></span>
                         </td>
+                        
+                        <td>
+                            <div class="form-group">
+                                <input type="number" name="qty" id="qty" class="form-control calprice" placeholder="Quantity" />
+                            </div>
+                            <span class="v-msg"></span>
+                        </td>
+                        
                         <td>
                             <input type="number" id="total_price" class="form-control qty calculatePrice" disabled>
                         </td>
